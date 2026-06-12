@@ -4,7 +4,7 @@ function App() {
     <>
       <div className="flex v-screen items-center justify-center">
         <h1 className="text-4xl font-bold">
-          Developer Frontend
+          Hello Friends !! This The Developer Frontend Loaded
         </h1>
       </div>
       <div className="flex h-screen items-center justify-center">

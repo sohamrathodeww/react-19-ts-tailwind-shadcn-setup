@@ -154,3 +154,11 @@ Sera
 Rhea 
 Custom
 
+npm install tslib
+
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add textarea
+npx shadcn@latest add checkbox
+npx shadcn@latest add separator
+

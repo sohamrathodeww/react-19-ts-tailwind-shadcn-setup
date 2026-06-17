@@ -36,15 +36,30 @@ export default function AutoFormatTextarea({
 
   return (
     <textarea
-      value={value}
-      onChange={(e) =>
-        onChange(
-          e.target.value
-        )
-      }
-      onPaste={handlePaste}
-      placeholder={placeholder}
-      className="h-[500px] w-full rounded-md border p-3 font-mono"
-    />
+    value={value}
+    onChange={(e) =>
+      onChange(e.target.value)
+    }
+    onPaste={handlePaste}
+    placeholder={placeholder}
+    spellCheck={false}
+    className="
+      min-h-[500px]
+      w-full
+      resize-none
+      rounded-lg
+      border
+      bg-background
+      p-4
+      font-mono
+      text-sm
+      outline-none
+      transition-colors
+
+      focus:border-primary
+      focus:ring-2
+      focus:ring-primary/20
+    "
+  />
   );
 }

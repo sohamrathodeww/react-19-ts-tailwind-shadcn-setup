@@ -28,24 +28,36 @@ export default function CodeComparePage() {
     setCompareResult(result);
   }
   return (
-    <div className="space-y-8">
-      { /* Header */}
-        <CompareHeader/>
-      { /* Options */}
-        <CompareOptions options={options} onChange={setOptions}/>
-      { /* Editors */}
-        <CompareEditors originalCode={originalCode} compareCode={compareCode} onOriginalCodeChange={setOriginalCode} onCompareCodeChange={setCompareCode}/>
-      { /* Actions */}
-        <CompareActions onCompare={handleCompare}/>
-      { /* Diff Result */}
+    <div className="mx-auto max-w-7xl px-4 py-6">
+
+      {/* Hero */}
+      <CompareHeader />
+
+      {/* Editors */}
+      <CompareEditors
+        originalCode={originalCode}
+        compareCode={compareCode}
+        onOriginalCodeChange={setOriginalCode}
+        onCompareCodeChange={setCompareCode}
+      />
+
+      {/* Options */}
+      <CompareOptions
+        options={options}
+        onChange={setOptions}
+      />
+
+      {/* Toolbar */}
+      <CompareActions
+        onCompare={handleCompare}
+      />
       
-      {
-        compareResult && (
-          <DiffResult compareResult={compareResult}
-          />
-        )
-      }
-      </div>
-      
+      {/* Result */}
+      {compareResult && (
+        <DiffResult
+          compareResult={compareResult}
+        />
+      )}
+    </div>
   );
 }

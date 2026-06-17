@@ -1,13 +1,23 @@
+import { Play } from "lucide-react";
+import { Button } from "../../../components/ui/button";
+
 interface Props {
-    onCompare: () => void;
+  onCompare: () => void;
 }
 
 export default function CompareActions({
-    onCompare,
+  onCompare,
 }: Props) {
-    return (
-        <div className="flex justify-center">
-            <button onClick={onCompare} className="rounded-md border px-6 py-2" >Compare</button>
-        </div>
-    )
+  return (
+    <div className="mb-6 mt-4 flex justify-center">
+      <Button
+        size="lg"
+        onClick={onCompare}
+        className="min-w-[180px]"
+      >
+        <Play className="mr-2 h-4 w-4" />
+        Compare Code
+      </Button>
+    </div>
+  );
 }

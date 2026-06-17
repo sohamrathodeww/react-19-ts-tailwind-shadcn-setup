@@ -1,56 +1,66 @@
-import { Card } from "../../../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/card";
+
 import AutoFormatTextarea from "../../../shared/components/AutoFormatTextarea";
 
-
 interface Props {
-    originalCode: string;
-    compareCode: string;
+  originalCode: string;
+  compareCode: string;
 
-    onOriginalCodeChange: (value: string) => void;
-    onCompareCodeChange: (value: string) => void;
+  onOriginalCodeChange: (
+    value: string
+  ) => void;
+
+  onCompareCodeChange: (
+    value: string
+  ) => void;
 }
 
-
-
 export default function CompareEditors({
-    originalCode,
-    compareCode,
-    onOriginalCodeChange,
-    onCompareCodeChange,
+  originalCode,
+  compareCode,
+  onOriginalCodeChange,
+  onCompareCodeChange,
 }: Props) {
-    return (
-        <div className="grid grid-cols-2 gap-4">
-            <Card className="p-4">
-                
-                <h3 className="mb-3 font-medium">
-                    Original Code
-                </h3>
-                <AutoFormatTextarea
-                value={originalCode}
-                onChange={onOriginalCodeChange}
-                placeholder="Original Code"
-                />
+  return (
+    <div className="grid gap-6 lg:grid-cols-2">
 
+      <Card className="overflow-hidden">
+        <CardHeader className="border-b">
+          <CardTitle>
+            Original Code
+          </CardTitle>
+        </CardHeader>
 
-                 {/* <textarea value={originalCode} onChange={(e) => onOriginalCodeChange(e.target.value)} placeholder="Original Code" className="h-80 rounded-md border p-3" /> */}
-                
-                
-            </Card>
+        <CardContent className="p-4">
+          <AutoFormatTextarea
+            value={originalCode}
+            onChange={onOriginalCodeChange}
+            placeholder="Paste original code here..."
+          />
+        </CardContent>
+      </Card>
 
-            <Card className="p-4">
-                
-                <h3 className="mb-3 font-medium">
-                    Compare Code
-                </h3>
-                <AutoFormatTextarea
-                    value={compareCode}
-                    onChange={onCompareCodeChange}
-                    placeholder="Compare Code"
-                />
-                   
-                {/* <textarea value={compareCode} onChange={(e) => onCompareCodeChange(e.target.value)} placeholder="Compare Code" className="h-80 rounded-md border p-3" /> */}
-                
-            </Card>
-        </div>
-    )
+      <Card className="overflow-hidden">
+        <CardHeader className="border-b">
+          <CardTitle>
+            Compare Code
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent className="p-4">
+          <AutoFormatTextarea
+            value={compareCode}
+            onChange={onCompareCodeChange}
+            placeholder="Paste modified code here..."
+          />
+        </CardContent>
+      </Card>
+
+    </div>
+  );
 }

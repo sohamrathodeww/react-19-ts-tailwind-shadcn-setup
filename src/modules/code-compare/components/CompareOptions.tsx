@@ -1,88 +1,143 @@
-
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/card";
 
 import { Checkbox } from "../../../components/ui/checkbox";
-import type { CompareOptions as CompareOptionType } from "../types/compare.types";
+
+import type {
+  CompareOptions as CompareOptionType,
+} from "../types/compare.types";
 
 interface Props {
-    options: CompareOptionType;
-    onChange:(options: CompareOptionType) => void; 
+  options: CompareOptionType;
+  onChange: (
+    options: CompareOptionType
+  ) => void;
 }
 
-export default function CompareOptions({ 
-    options, 
-    onChange
+export default function CompareOptions({
+  options,
+  onChange,
 }: Props) {
-    const updateOption = (
-        key: keyof CompareOptionType,
-        value: boolean
-    ) => {
-        onChange({
-            ...options,
-            [key]: value
-        });
-    }
+  const updateOption = (
+    key: keyof CompareOptionType,
+    value: boolean
+  ) => {
+    onChange({
+      ...options,
+      [key]: value,
+    });
+  };
 
-    return (
-        <div className="space-y-4 rounded-lg border p-4">
-            <h3 className="font-semibold"> Compare Options</h3>
+  return (
+    <Card className="mt-6">
+      <CardHeader>
+        <CardTitle>
+          Comparison Options
+        </CardTitle>
+      </CardHeader>
 
-            <div className="grid gap-3 md:grid-cols-2">
-                <label className="flex items-center gap-2">
-                    <Checkbox checked= {
-                            options.ignoreLeadingTrailingWhitespace
-                        }
-                        onCheckedChange={(checked) => 
-                            updateOption(
-                                `ignoreLeadingTrailingWhitespace`,
-                                !!checked
-                            )
-                        }
-                    />
-                    Ignore Leading / Trailing Spaces
-                </label>
+      <CardContent>
+        <div className="grid gap-4 md:grid-cols-2">
 
-                <label className="flex items-center gap-2">
-                    <Checkbox checked= {
-                            options.ignoreEmptyLines
-                        }
-                        onCheckedChange = { (checked) => 
-                            updateOption(
-                                "ignoreEmptyLines",
-                                !!checked
-                            )
-                        }
-                    />
-                    Ignore Empty Lines
-                </label>
+          <OptionItem
+            label="Ignore Leading / Trailing Spaces"
+            checked={
+              options.ignoreLeadingTrailingWhitespace
+            }
+            onChange={(checked) =>
+              updateOption(
+                "ignoreLeadingTrailingWhitespace",
+                checked
+              )
+            }
+          />
 
-                <label className="flex items-center gap-2">
-                    <Checkbox checked= {
-                            options.ignoreTabs
-                        }
-                        onCheckedChange = { (checked) => 
-                            updateOption(
-                                "ignoreTabs",
-                                !!checked
-                            )
-                        } 
-                    />
-                    Ignore Tabs
-                </label>
+          <OptionItem
+            label="Ignore Empty Lines"
+            checked={
+              options.ignoreEmptyLines
+            }
+            onChange={(checked) =>
+              updateOption(
+                "ignoreEmptyLines",
+                checked
+              )
+            }
+          />
 
-                <label className="flex items-center gap-2">
-                    <Checkbox checked= {
-                            options.ignoreCase
-                        }
-                        onCheckedChange ={ (checked) => 
-                            updateOption(
-                                'ignoreCase',
-                                !!checked
-                            )
-                        }
-                    />
-                    Ignore Case
-                </label>
-            </div>
+          <OptionItem
+            label="Ignore Tabs"
+            checked={
+              options.ignoreTabs
+            }
+            onChange={(checked) =>
+              updateOption(
+                "ignoreTabs",
+                checked
+              )
+            }
+          />
+
+          <OptionItem
+            label="Ignore Case"
+            checked={
+              options.ignoreCase
+            }
+            onChange={(checked) =>
+              updateOption(
+                "ignoreCase",
+                checked
+              )
+            }
+          />
+
         </div>
-    )
+      </CardContent>
+    </Card>
+  );
+}
+
+interface OptionItemProps {
+  label: string;
+  checked: boolean;
+  onChange: (
+    checked: boolean
+  ) => void;
+}
+
+function OptionItem({
+  label,
+  checked,
+  onChange,
+}: OptionItemProps) {
+  return (
+    <label
+      className="
+        flex
+        cursor-pointer
+        items-center
+        gap-3
+        rounded-lg
+        border
+        p-4
+        transition-colors
+        hover:bg-muted/50
+      "
+    >
+      <Checkbox
+        checked={checked}
+        onCheckedChange={(value) =>
+          onChange(!!value)
+        }
+      />
+
+      <span className="text-sm font-medium">
+        {label}
+      </span>
+    </label>
+  );
 }

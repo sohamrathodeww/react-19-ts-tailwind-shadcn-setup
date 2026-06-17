@@ -1,5 +1,10 @@
 export interface CompareOptions {
-    ignoreWhiteSpace: boolean;
+    ignoreWhitespace: boolean;
+    ignoreLeadingTrailingWhitespace: boolean;
+    ignoreMultipleSpaces: boolean;
+    ignoreEmptyLines: boolean;
+    ignoreTabs: boolean;
+    ignoreCase: boolean;
 }
 
 export interface CompareState {
@@ -11,4 +16,5 @@ export interface CompareState {
 export interface CompareResult {
   originalContent: string;
   compareContent: string;
+  differenceCount: number;
 }

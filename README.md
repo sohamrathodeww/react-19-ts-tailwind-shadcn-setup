@@ -162,3 +162,9 @@ npx shadcn@latest add textarea
 npx shadcn@latest add checkbox
 npx shadcn@latest add separator
 
+npm install @monaco-editor/react
+
+#for format
+npm install prettier
+
+npm install framer-motion lucide-react

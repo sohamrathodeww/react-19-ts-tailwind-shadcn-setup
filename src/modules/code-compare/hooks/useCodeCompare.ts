@@ -4,8 +4,15 @@ import type { CompareResult } from "../types/compare.types";
 export const useCodeCompare = () => {
     const [originalCode, setOriginalCode] = useState("");
     const [compareCode, setCompareCode] = useState("");
-    const [ignoreWhiteSpace, setIgnoreWhiteSpace] = useState(false);
     const [compareResult, setCompareResult] = useState<CompareResult | null>(null);
+    const [options, setOptions] = useState({
+        ignoreWhitespace : false,
+        ignoreLeadingTrailingWhitespace: false,
+        ignoreMultipleSpaces: false,
+        ignoreEmptyLines: false,
+        ignoreTabs : false,
+        ignoreCase : false
+    });
 
 
 
@@ -13,12 +20,12 @@ export const useCodeCompare = () => {
     return {
         originalCode,
         compareCode,
-        ignoreWhiteSpace,
         compareResult,
+        options,
         setOriginalCode,
         setCompareCode,
-        setIgnoreWhiteSpace,
-        setCompareResult
+        setCompareResult,
+        setOptions
 
     };
 }

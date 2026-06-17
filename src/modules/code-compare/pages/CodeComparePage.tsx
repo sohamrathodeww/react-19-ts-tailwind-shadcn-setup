@@ -10,21 +10,21 @@ import { compareCodeService } from "../services/codeCompare.service" ;
 export default function CodeComparePage() {
   const { 
     originalCode,
-    compareCode, 
-    ignoreWhiteSpace, 
+    compareCode,  
     compareResult,
+    options,
     setOriginalCode, 
     setCompareCode, 
-    setIgnoreWhiteSpace,
-    setCompareResult
+    setCompareResult,
+    setOptions
   } = useCodeCompare();
   
   const handleCompare = () => {
     console.log(`Comparing .........`);
     console.log(`originalCode >>>> `, originalCode);
     console.log(`compareCode >>>> `, compareCode);
-    console.log(`ignoreWhiteSpace >>>> `, ignoreWhiteSpace);
-    const result = compareCodeService(originalCode, compareCode, ignoreWhiteSpace);
+    console.log(`options >>>> `, options);
+    const result = compareCodeService(originalCode, compareCode, options);
     setCompareResult(result);
   }
   return (
@@ -32,13 +32,19 @@ export default function CodeComparePage() {
       { /* Header */}
         <CompareHeader/>
       { /* Options */}
-        <CompareOptions ignoreWhitespace = {ignoreWhiteSpace} onIgnoreWhitespaceChange={setIgnoreWhiteSpace}/>
+        <CompareOptions options={options} onChange={setOptions}/>
       { /* Editors */}
         <CompareEditors originalCode={originalCode} compareCode={compareCode} onOriginalCodeChange={setOriginalCode} onCompareCodeChange={setCompareCode}/>
       { /* Actions */}
         <CompareActions onCompare={handleCompare}/>
       { /* Diff Result */}
-        <DiffResult originalCode={compareResult?.originalContent || ``} compareCode={compareResult?.compareContent || ``} />
+      
+      {
+        compareResult && (
+          <DiffResult compareResult={compareResult}
+          />
+        )
+      }
       </div>
       
   );

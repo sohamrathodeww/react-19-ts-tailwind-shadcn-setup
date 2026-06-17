@@ -27,6 +27,27 @@ export default function CodeComparePage() {
     const result = compareCodeService(originalCode, compareCode, options);
     setCompareResult(result);
   }
+  const handleSwap = () => {
+    const temp = originalCode;
+    setOriginalCode(compareCode);
+    setCompareCode(temp);
+
+    if (compareResult) {
+      const result = compareCodeService(
+        compareCode,
+        originalCode,
+        options
+      );
+
+      setCompareResult(result);
+    }
+  }
+
+  const handleClear = () => {
+    setOriginalCode("");
+    setCompareCode("");
+    setCompareResult(null);
+  }
   return (
     <div className="mx-auto max-w-7xl px-4 py-6">
 
@@ -39,6 +60,7 @@ export default function CodeComparePage() {
         compareCode={compareCode}
         onOriginalCodeChange={setOriginalCode}
         onCompareCodeChange={setCompareCode}
+        onSwap={handleSwap}
       />
 
       {/* Options */}
@@ -50,8 +72,9 @@ export default function CodeComparePage() {
       {/* Toolbar */}
       <CompareActions
         onCompare={handleCompare}
+        onClear={handleClear}
       />
-      
+
       {/* Result */}
       {compareResult && (
         <DiffResult

@@ -168,3 +168,7 @@ npm install @monaco-editor/react
 npm install prettier
 
 npm install framer-motion lucide-react
+
+Alertbox
+
+npx shadcn@latest add alert-dialog

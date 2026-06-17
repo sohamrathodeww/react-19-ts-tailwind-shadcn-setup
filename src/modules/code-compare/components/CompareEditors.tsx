@@ -1,3 +1,5 @@
+import { ArrowLeftRight } from "lucide-react";
+import { Button } from "../../../components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,6 +20,8 @@ interface Props {
   onCompareCodeChange: (
     value: string
   ) => void;
+
+  onSwap: () => void;
 }
 
 export default function CompareEditors({
@@ -25,9 +29,10 @@ export default function CompareEditors({
   compareCode,
   onOriginalCodeChange,
   onCompareCodeChange,
+  onSwap,
 }: Props) {
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr]">
 
       <Card className="overflow-hidden">
         <CardHeader className="border-b">
@@ -45,6 +50,21 @@ export default function CompareEditors({
         </CardContent>
       </Card>
 
+        <div className="flex items-center justify-center lg:flex-row">
+            <Button
+                variant="outline"
+                size="icon"
+                onClick={onSwap}
+                className="
+                h-12
+                w-12
+                rounded-full
+                shadow-md
+                "
+            >
+                <ArrowLeftRight className="h-5 w-5" />
+            </Button>
+        </div>
       <Card className="overflow-hidden">
         <CardHeader className="border-b">
           <CardTitle>

@@ -52,14 +52,14 @@ export default function CompareEditors({
 
         <div className="flex items-center justify-center lg:flex-row">
             <Button
-                variant="outline"
-                size="icon"
+                variant="secondary"
                 onClick={onSwap}
                 className="
-                h-12
-                w-12
-                rounded-full
-                shadow-md
+                    h-14
+                    w-14
+                    rounded-full
+                    transition-all
+                    hover:scale-110
                 "
             >
                 <ArrowLeftRight className="h-5 w-5" />

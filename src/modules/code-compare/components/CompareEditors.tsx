@@ -8,6 +8,7 @@ import {
 } from "../../../components/ui/card";
 
 import AutoFormatTextarea from "../../../shared/components/AutoFormatTextarea";
+import FileUploadButton from './FileUploadButton';
 
 interface Props {
   originalCode: string;
@@ -36,9 +37,14 @@ export default function CompareEditors({
 
       <Card className="overflow-hidden">
         <CardHeader className="border-b">
-          <CardTitle>
-            Original Code
-          </CardTitle>
+          <div className="flex justify-between">
+            <CardTitle>
+              Original Code
+            </CardTitle>
+            <label>
+              <FileUploadButton onFileLoaded={onOriginalCodeChange} />
+            </label>
+          </div>
         </CardHeader>
 
         <CardContent className="p-4">
@@ -67,9 +73,14 @@ export default function CompareEditors({
         </div>
       <Card className="overflow-hidden">
         <CardHeader className="border-b">
-          <CardTitle>
-            Compare Code
-          </CardTitle>
+          <div className="flex justify-between">
+            <CardTitle>
+              Compare Code
+            </CardTitle>
+            <label>
+              <FileUploadButton onFileLoaded={onCompareCodeChange} />
+            </label>
+          </div>
         </CardHeader>
 
         <CardContent className="p-4">

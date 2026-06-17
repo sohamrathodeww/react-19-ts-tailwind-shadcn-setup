@@ -172,3 +172,5 @@ npm install framer-motion lucide-react
 Alertbox
 
 npx shadcn@latest add alert-dialog
+
+npm install sonner

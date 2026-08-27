@@ -116,17 +116,21 @@ function OptionItem({
 }: OptionItemProps) {
   return (
     <label
-      className="
+      className={`
         flex
         cursor-pointer
         items-center
-        gap-3
-        rounded-lg
+        gap-3.5
+        rounded-2xl
         border
-        p-4
-        transition-colors
-        hover:bg-muted/50
-      "
+        p-4.5
+        transition-all
+        duration-300
+        ${checked 
+          ? "border-primary/30 bg-primary/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_0_15px_rgba(109,40,217,0.1)] text-white" 
+          : "border-white/10 bg-white/3 hover:bg-white/6 hover:border-white/20 hover:scale-[1.01]"
+        }
+      `}
     >
       <Checkbox
         checked={checked}
@@ -135,7 +139,7 @@ function OptionItem({
         }
       />
 
-      <span className="text-sm font-medium">
+      <span className="text-sm font-bold tracking-tight select-none">
         {label}
       </span>
     </label>

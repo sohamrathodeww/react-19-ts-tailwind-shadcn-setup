@@ -1,6 +1,6 @@
 // --ts-ignore
 import Editor from "@monaco-editor/react";
-import { formatCode } from "../../services/codeFormatter.service";
+import { autoFormatContent } from "../../services/codeFormatter.service";
 
 interface Props {
     value:string;
@@ -22,7 +22,7 @@ export default function CodeEditor({
                 editor.getValue();
 
                 const formatted =
-                await formatCode(
+                await autoFormatContent(
                     currentValue
                 );
 

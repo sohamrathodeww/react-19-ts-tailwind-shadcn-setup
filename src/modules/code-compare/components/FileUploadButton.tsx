@@ -45,11 +45,11 @@ export default function FileUploadButton({
         }
     }
     return (
-        <label>
+        <label className="cursor-pointer">
             <input type="file" hidden onChange={handleUpload} />
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" asChild className="cursor-pointer">
                 <span>
-                    <Upload className="mr-2 h-4 w-4" />
+                    <Upload className="mr-1.5 h-3.5 w-3.5" />
                     Upload
                 </span>
             </Button>

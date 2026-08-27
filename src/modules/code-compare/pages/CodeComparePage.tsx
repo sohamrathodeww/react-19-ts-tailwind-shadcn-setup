@@ -3,9 +3,25 @@ import CompareEditors from "../components/CompareEditors";
 import CompareHeader from "../components/CompareHeader";
 import CompareOptions from "../components/CompareOptions";
 import DiffResult from "../components/DiffResult";
+import { motion } from "motion/react";
 
 import { useCodeCompare } from "../hooks/useCodeCompare";
 import { compareCodeService } from "../services/codeCompare.service" ;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+} as const;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }
+} as const;
 
 export default function CodeComparePage() {
   const { 
@@ -49,38 +65,52 @@ export default function CodeComparePage() {
     setCompareResult(null);
   }
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
-
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="mx-auto max-w-none w-full py-6 space-y-6"
+    >
       {/* Hero */}
-      <CompareHeader />
+      <motion.div variants={itemVariants}>
+        <CompareHeader />
+      </motion.div>
 
       {/* Editors */}
-      <CompareEditors
-        originalCode={originalCode}
-        compareCode={compareCode}
-        onOriginalCodeChange={setOriginalCode}
-        onCompareCodeChange={setCompareCode}
-        onSwap={handleSwap}
-      />
+      <motion.div variants={itemVariants}>
+        <CompareEditors
+          originalCode={originalCode}
+          compareCode={compareCode}
+          onOriginalCodeChange={setOriginalCode}
+          onCompareCodeChange={setCompareCode}
+          onSwap={handleSwap}
+        />
+      </motion.div>
 
       {/* Options */}
-      <CompareOptions
-        options={options}
-        onChange={setOptions}
-      />
+      <motion.div variants={itemVariants}>
+        <CompareOptions
+          options={options}
+          onChange={setOptions}
+        />
+      </motion.div>
 
       {/* Toolbar */}
-      <CompareActions
-        onCompare={handleCompare}
-        onClear={handleClear}
-      />
+      <motion.div variants={itemVariants}>
+        <CompareActions
+          onCompare={handleCompare}
+          onClear={handleClear}
+        />
+      </motion.div>
 
       {/* Result */}
       {compareResult && (
-        <DiffResult
-          compareResult={compareResult}
-        />
+        <motion.div variants={itemVariants}>
+          <DiffResult
+            compareResult={compareResult}
+          />
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

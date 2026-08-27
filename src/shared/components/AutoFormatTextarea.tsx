@@ -44,21 +44,25 @@ export default function AutoFormatTextarea({
     placeholder={placeholder}
     spellCheck={false}
     className="
-      min-h-[500px]
+      min-h-[640px]
       w-full
       resize-none
-      rounded-lg
+      rounded-2xl
       border
-      bg-background
-      p-4
+      border-white/10
+      bg-white/3
+      p-5
       font-mono
       text-sm
       outline-none
-      transition-colors
-
-      focus:border-primary
+      transition-all
+      duration-300
+      placeholder:text-muted-foreground/60
+      focus:border-primary/50
       focus:ring-2
       focus:ring-primary/20
+      focus:bg-white/5
+      shadow-inner
     "
   />
   );

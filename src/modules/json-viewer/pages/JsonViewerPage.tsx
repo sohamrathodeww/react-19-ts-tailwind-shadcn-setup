@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Braces, Play, RefreshCw, FileCode, CheckCircle, AlertCircle } from "lucide-react";
+import { Braces, Play, RefreshCw, FileCode, CheckCircle, AlertCircle, Upload } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Button } from "../../../components/ui/button";
 import AutoFormatTextarea from "../../../shared/components/AutoFormatTextarea";
@@ -73,7 +73,7 @@ export default function JsonViewerPage() {
       setError(null);
       toast.success("JSON parsed successfully");
     } catch (err: any) {
-      setError(err.message || "Failed to parse JSON. Please check syntax.");
+      setError(`JSON Parse Error: ${err.message || "Failed to parse JSON. Please check syntax."}`);
       setParsedData(null);
     }
   };
@@ -90,6 +90,34 @@ export default function JsonViewerPage() {
     setParsedData(SAMPLE_JSON);
     setError(null);
     toast.info("Sample JSON loaded");
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith(".json")) {
+      setError("Strictly only .json files are allowed to be uploaded");
+      setParsedData(null);
+      toast.error("Invalid file format. Please upload a .json file.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target?.result as string;
+      setJsonText(text);
+      try {
+        const parsed = JSON.parse(text);
+        setParsedData(parsed);
+        setError(null);
+        toast.success("JSON file uploaded and parsed successfully");
+      } catch (err: any) {
+        setError(`JSON Parse Error: ${err.message || "Invalid JSON format in the uploaded file"}`);
+        setParsedData(null);
+      }
+    };
+    reader.readAsText(file);
   };
 
   return (
@@ -130,12 +158,22 @@ export default function JsonViewerPage() {
               <CardTitle className="text-base font-bold text-white/95">
                 Input JSON Code
               </CardTitle>
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
+                <label className="h-8 text-xs hover:bg-white/10 text-muted-foreground flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 transition-colors cursor-pointer font-medium">
+                  <Upload className="h-3.5 w-3.5" />
+                  <span>Upload .json</span>
+                  <input
+                    type="file"
+                    accept=".json"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
+                </label>
                 <Button
                   size="xs"
                   variant="ghost"
                   onClick={handleLoadSample}
-                  className="h-8 text-xs hover:bg-white/10 text-muted-foreground flex items-center gap-1.5 cursor-pointer"
+                  className="h-8 text-xs hover:bg-white/10 text-muted-foreground flex items-center gap-1.5 cursor-pointer font-medium"
                 >
                   <FileCode className="h-3.5 w-3.5" />
                   Sample

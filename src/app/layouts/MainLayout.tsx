@@ -13,9 +13,10 @@ export default function MainLayout() {
 
             {/* Ambient atmospheric background glows */}
             <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-                <div className="animate-glow-1 absolute -top-80 -left-60 h-[900px] w-[900px] rounded-full bg-primary/20 blur-[140px]" />
-                <div className="animate-glow-2 absolute top-1/3 -right-60 h-[800px] w-[800px] rounded-full bg-indigo-500/18 blur-[130px]" />
-                <div className="animate-glow-1 absolute bottom-[-200px] left-1/4 h-[700px] w-[700px] rounded-full bg-fuchsia-600/12 blur-[150px]" />
+                <div className="animate-glow-1 absolute -top-80 -left-60 h-[1000px] w-[1000px] rounded-full bg-primary/25 blur-[130px]" />
+                <div className="animate-glow-2 absolute top-1/4 left-1/4 h-[900px] w-[900px] rounded-full bg-orange-500/20 blur-[130px]" />
+                <div className="animate-glow-2 absolute top-1/3 -right-60 h-[900px] w-[900px] rounded-full bg-indigo-500/22 blur-[120px]" />
+                <div className="animate-glow-1 absolute bottom-[-200px] left-1/4 h-[800px] w-[800px] rounded-full bg-amber-600/18 blur-[140px]" />
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             </div>
 
@@ -51,7 +52,7 @@ export default function MainLayout() {
                         <Link to="/">
                             <span className={`relative flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300 ${
                                 location.pathname === "/" 
-                                ? "text-white bg-white/10" 
+                                ? "text-white bg-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border border-white/5" 
                                 : "text-muted-foreground hover:text-white hover:bg-white/5"
                             }`}>
                                 <LayoutDashboard className="h-4 w-4" />
@@ -61,7 +62,7 @@ export default function MainLayout() {
                         <Link to="/tools/code-compare">
                             <span className={`relative flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300 ${
                                 location.pathname === "/tools/code-compare" 
-                                ? "text-white bg-white/10" 
+                                ? "text-white bg-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border border-white/5" 
                                 : "text-muted-foreground hover:text-white hover:bg-white/5"
                             }`}>
                                 <GitCompare className="h-4 w-4" />

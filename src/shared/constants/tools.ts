@@ -11,7 +11,7 @@ export const TOOLS = [
     title: "JSON Viewer",
     description: "Visualize JSON as a tree structure",
     path: "/tools/json-viewer",
-    enabled: false,
+    enabled: true,
   },
   {
     id: "xml-viewer",

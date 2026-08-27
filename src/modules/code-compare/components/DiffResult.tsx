@@ -77,17 +77,17 @@ export default function DiffResult({
       <div className="grid gap-6 md:grid-cols-3">
 
         <motion.div variants={itemVariants}>
-          <Card className="border border-white/5 bg-white/2">
+          <Card>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   Differences Found
                 </p>
-                <p className="mt-2 text-3xl font-black text-white">
+                <p className="mt-2 text-3xl font-black text-foreground">
                   {compareResult.differenceCount}
                 </p>
               </div>
-              <div className="rounded-xl bg-amber-500/10 p-3 text-amber-400">
+              <div className="rounded-xl bg-amber-500/10 p-3 text-amber-500">
                 <FileDiff className="h-6 w-6" />
               </div>
             </CardContent>
@@ -95,17 +95,17 @@ export default function DiffResult({
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <Card className="border border-white/5 bg-white/2">
+          <Card>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   Comparison Status
                 </p>
-                <p className="mt-2 text-lg font-bold text-emerald-400">
+                <p className="mt-2 text-lg font-bold text-emerald-500">
                   Completed
                 </p>
               </div>
-              <div className="rounded-xl bg-emerald-500/10 p-3 text-emerald-400">
+              <div className="rounded-xl bg-emerald-500/10 p-3 text-emerald-500">
                 <CheckCircle className="h-6 w-6" />
               </div>
             </CardContent>
@@ -113,13 +113,13 @@ export default function DiffResult({
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <Card className="border border-white/5 bg-white/2">
+          <Card>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   View Mode
                 </p>
-                <p className="mt-2 text-lg font-bold text-white/90">
+                <p className="mt-2 text-lg font-bold text-foreground/90">
                   Side By Side
                 </p>
               </div>
